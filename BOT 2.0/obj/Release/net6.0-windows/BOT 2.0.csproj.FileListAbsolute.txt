@@ -1,0 +1,21 @@
+C:\BOT 2.0\BOT 2.0\bin\Release\net6.0-windows\BOT 2.0.exe
+C:\BOT 2.0\BOT 2.0\bin\Release\net6.0-windows\BOT 2.0.deps.json
+C:\BOT 2.0\BOT 2.0\bin\Release\net6.0-windows\BOT 2.0.runtimeconfig.json
+C:\BOT 2.0\BOT 2.0\bin\Release\net6.0-windows\BOT 2.0.dll
+C:\BOT 2.0\BOT 2.0\bin\Release\net6.0-windows\BOT 2.0.pdb
+C:\BOT 2.0\BOT 2.0\bin\Release\net6.0-windows\DocumentFormat.OpenXml.dll
+C:\BOT 2.0\BOT 2.0\bin\Release\net6.0-windows\SpreadsheetLight.dll
+C:\BOT 2.0\BOT 2.0\obj\Release\net6.0-windows\BOT 2.0.csproj.AssemblyReference.cache
+C:\BOT 2.0\BOT 2.0\obj\Release\net6.0-windows\BOT_2._0.Form1.resources
+C:\BOT 2.0\BOT 2.0\obj\Release\net6.0-windows\BOT_2._0.Properties.Resources.resources
+C:\BOT 2.0\BOT 2.0\obj\Release\net6.0-windows\BOT 2.0.csproj.GenerateResource.cache
+C:\BOT 2.0\BOT 2.0\obj\Release\net6.0-windows\BOT 2.0.GeneratedMSBuildEditorConfig.editorconfig
+C:\BOT 2.0\BOT 2.0\obj\Release\net6.0-windows\BOT 2.0.AssemblyInfoInputs.cache
+C:\BOT 2.0\BOT 2.0\obj\Release\net6.0-windows\BOT 2.0.AssemblyInfo.cs
+C:\BOT 2.0\BOT 2.0\obj\Release\net6.0-windows\BOT 2.0.csproj.CoreCompileInputs.cache
+C:\BOT 2.0\BOT 2.0\obj\Release\net6.0-windows\BOT 2.0.csproj.CopyComplete
+C:\BOT 2.0\BOT 2.0\obj\Release\net6.0-windows\BOT 2.0.dll
+C:\BOT 2.0\BOT 2.0\obj\Release\net6.0-windows\refint\BOT 2.0.dll
+C:\BOT 2.0\BOT 2.0\obj\Release\net6.0-windows\BOT 2.0.pdb
+C:\BOT 2.0\BOT 2.0\obj\Release\net6.0-windows\BOT 2.0.genruntimeconfig.cache
+C:\BOT 2.0\BOT 2.0\obj\Release\net6.0-windows\ref\BOT 2.0.dll

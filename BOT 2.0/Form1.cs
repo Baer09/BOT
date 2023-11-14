@@ -16,8 +16,6 @@ namespace BOT_2._0
             InitializeComponent();
             LstIdInstances = new List<string>();
             string instanciaActual;
-
-
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -27,9 +25,8 @@ namespace BOT_2._0
 
         private void btnGuardarInstancia_Click(object sender, EventArgs e)
         {
-            //TextWriter txt = new StreamWriter();
+            
             // create folder with idInstancia as a name
-
             string dir = @"C:\bots\" + txtInstancia.Text;
             Global._globalInstance = txtInstancia.Text;
             //instanciaActual = txtInstancia.Text;
@@ -44,16 +41,8 @@ namespace BOT_2._0
 
             //save instances in an array
             LstIdInstances.Add(txtInstancia.Text);
-            /*
-            foreach (var item in listaDeInstancias)
-            {
-                txtMostrar.Text += System.Environment.NewLine + item.ToString();
-            }
-            */
-
-
+       
             txtInstancia.Clear();
-
 
         }
 
@@ -86,12 +75,7 @@ namespace BOT_2._0
                 File.AppendAllText(path, appendText);
             }
             */
-
-
         }
-
-
-
 
         private void btnSunProveedor_Click(object sender, EventArgs e)
         {
@@ -171,8 +155,6 @@ namespace BOT_2._0
                 File.AppendAllText(path, appendText);
             }
 
-
-
         }
 
         private void btnGenerar_Click(object sender, EventArgs e)
@@ -184,7 +166,6 @@ namespace BOT_2._0
             //loop all IdInstances in the list 
             foreach (string IdInstance in LstIdInstances)
             {
-
                 // Validate if directory exists
                 string folder = path + @"xls";
                 string excelPath = folder + @"\" + IdInstance + ".xls";
@@ -206,7 +187,6 @@ namespace BOT_2._0
                 string[] Estatus = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblStatus.Text + ".txt");
                 string[] Solicitante = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblSolicitante.Text + ".txt");
 
-
                 // Create a new excel from txt files
                 using (SLDocument sl = new SLDocument())
                 {
@@ -219,7 +199,6 @@ namespace BOT_2._0
                     sl.SetCellValue("G1", "Solicitante");
                     for (int i = 1; i <= IdProveedor.Length; i++)
                     {
-
                         sl.SetCellValue(i + 1, 1, IdProveedor[i - 1]);
                         sl.SetCellValue(i + 1, 2, SunProveedor[i - 1]);
                         sl.SetCellValue(i + 1, 3, Proveedor[i - 1]);
@@ -227,33 +206,11 @@ namespace BOT_2._0
                         sl.SetCellValue(i + 1, 5, Pais[i - 1]);
                         sl.SetCellValue(i + 1, 6, Estatus[i - 1]);
                         sl.SetCellValue(i + 1, 7, Solicitante[i - 1]);
-
                     }
                     sl.SaveAs(excelPath);
-
                 }
             }
 
-
-            // add all instances (paises) in an arraylist
-
-            // read txt files
-
-            // saved data to xls files
-
-
-
-
-
-            /*
-            StreamReader textFile = new StreamReader(@"C:\test\testing.txt");
-            string line = "";
-            while ((line = textFile.ReadLine()) != null) {
-                Console.WriteLine(line);
-            
-            }
-            textFile.Close();
-            */
             LstIdInstances = new List<string>();
             this.Close();
         }
