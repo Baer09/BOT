@@ -6,16 +6,17 @@ namespace BOT_2._0
     public partial class Form1 : Form
     {
         private List<string> LstIdInstances;
-        static class Global {
+        static class Global
+        {
             public static string _globalInstance = "";
-           
+
         }
         public Form1()
         {
             InitializeComponent();
             LstIdInstances = new List<string>();
             string instanciaActual;
-            
+
 
         }
 
@@ -28,7 +29,7 @@ namespace BOT_2._0
         {
             //TextWriter txt = new StreamWriter();
             // create folder with idInstancia as a name
-            
+
             string dir = @"C:\bots\" + txtInstancia.Text;
             Global._globalInstance = txtInstancia.Text;
             //instanciaActual = txtInstancia.Text;
@@ -36,10 +37,10 @@ namespace BOT_2._0
             {
                 Directory.CreateDirectory(dir);
             }
-            
+
             // show number of instances
             txtNoIntancias.Text += System.Environment.NewLine + txtInstancia.Text;
-           // txtNoIntancias.Text += System.Environment.NewLine + Global._globalInstance;
+            // txtNoIntancias.Text += System.Environment.NewLine + Global._globalInstance;
 
             //save instances in an array
             LstIdInstances.Add(txtInstancia.Text);
@@ -179,7 +180,7 @@ namespace BOT_2._0
             //path
             string path = @"C:\bots\import\";
             string pathTxt = @"C:\bots\";
-            
+
             //loop all IdInstances in the list 
             foreach (string IdInstance in LstIdInstances)
             {
@@ -193,7 +194,7 @@ namespace BOT_2._0
                     if (File.Exists(excelPath))
                         File.Delete(excelPath);
                 }
-                else 
+                else
                     Directory.CreateDirectory(folder);
 
                 // set all values from txt files
@@ -210,7 +211,7 @@ namespace BOT_2._0
                 using (SLDocument sl = new SLDocument())
                 {
                     sl.SetCellValue("A1", "IdProveedor");
-                    sl.SetCellValue("B1","SunProveedor");
+                    sl.SetCellValue("B1", "SunProveedor");
                     sl.SetCellValue("C1", "Proveedor");
                     sl.SetCellValue("D1", "TipoProveedor");
                     sl.SetCellValue("E1", "Pais");
@@ -218,7 +219,7 @@ namespace BOT_2._0
                     sl.SetCellValue("G1", "Solicitante");
                     for (int i = 1; i <= IdProveedor.Length; i++)
                     {
-                        
+
                         sl.SetCellValue(i + 1, 1, IdProveedor[i - 1]);
                         sl.SetCellValue(i + 1, 2, SunProveedor[i - 1]);
                         sl.SetCellValue(i + 1, 3, Proveedor[i - 1]);
@@ -232,7 +233,7 @@ namespace BOT_2._0
 
                 }
             }
-            
+
 
             // add all instances (paises) in an arraylist
 
@@ -240,7 +241,7 @@ namespace BOT_2._0
 
             // saved data to xls files
 
-            
+
 
 
 

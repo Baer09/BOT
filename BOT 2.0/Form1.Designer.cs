@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             groupBox1 = new GroupBox();
             btnSolicitante = new Button();
             txtSolicitante = new TextBox();
@@ -305,21 +306,26 @@
             // 
             // btnGenerar
             // 
-            btnGenerar.Location = new Point(116, 366);
+            btnGenerar.Image = (Image)resources.GetObject("btnGenerar.Image");
+            btnGenerar.Location = new Point(169, 384);
             btnGenerar.Name = "btnGenerar";
-            btnGenerar.Size = new Size(75, 28);
+            btnGenerar.Size = new Size(75, 54);
             btnGenerar.TabIndex = 1;
             btnGenerar.Text = "Generar";
+            btnGenerar.TextImageRelation = TextImageRelation.ImageAboveText;
             btnGenerar.UseVisualStyleBackColor = true;
             btnGenerar.Click += btnGenerar_Click;
             // 
             // btnCerrar
             // 
-            btnCerrar.Location = new Point(272, 366);
+            btnCerrar.Image = (Image)resources.GetObject("btnCerrar.Image");
+            btnCerrar.ImageAlign = ContentAlignment.BottomCenter;
+            btnCerrar.Location = new Point(289, 384);
             btnCerrar.Name = "btnCerrar";
-            btnCerrar.Size = new Size(75, 28);
+            btnCerrar.Size = new Size(75, 54);
             btnCerrar.TabIndex = 2;
             btnCerrar.Text = "Cerrar";
+            btnCerrar.TextImageRelation = TextImageRelation.ImageAboveText;
             btnCerrar.UseVisualStyleBackColor = true;
             btnCerrar.Click += btnCerrar_Click;
             // 
@@ -354,7 +360,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(684, 450);
+            ClientSize = new Size(684, 463);
             Controls.Add(txtMostrar);
             Controls.Add(txtNoIntancias);
             Controls.Add(lblNoInstancias);
