@@ -59,7 +59,6 @@
             lblNoInstancias = new Label();
             txtNoIntancias = new TextBox();
             txtMostrar = new TextBox();
-            btnMessage = new Button();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -357,22 +356,11 @@
             txtMostrar.Size = new Size(107, 140);
             txtMostrar.TabIndex = 5;
             // 
-            // btnMessage
-            // 
-            btnMessage.Location = new Point(432, 384);
-            btnMessage.Name = "btnMessage";
-            btnMessage.Size = new Size(86, 40);
-            btnMessage.TabIndex = 6;
-            btnMessage.Text = "testMessage";
-            btnMessage.UseVisualStyleBackColor = true;
-            btnMessage.Click += btnMessage_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(684, 463);
-            Controls.Add(btnMessage);
             Controls.Add(txtMostrar);
             Controls.Add(txtNoIntancias);
             Controls.Add(lblNoInstancias);
@@ -419,6 +407,5 @@
         private Label lblNoInstancias;
         private TextBox txtNoIntancias;
         private TextBox txtMostrar;
-        private Button btnMessage;
     }
 }

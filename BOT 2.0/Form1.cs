@@ -179,6 +179,8 @@ namespace BOT_2._0
                     Directory.CreateDirectory(folder);
 
                 // set all values from txt files
+                try
+                {
 
                     string[] IdProveedor = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblIdProducto.Text + ".txt");
                     string[] SunProveedor = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblSunProveedor.Text + ".txt");
@@ -188,32 +190,40 @@ namespace BOT_2._0
                     string[] Estatus = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblStatus.Text + ".txt");
                     string[] Solicitante = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblSolicitante.Text + ".txt");
 
-                // Create a new excel from txt files
-                using (SLDocument sl = new SLDocument())
-                {
-                    sl.SetCellValue("A1", "IdProveedor");
-                    sl.SetCellValue("B1", "SunProveedor");
-                    sl.SetCellValue("C1", "Proveedor");
-                    sl.SetCellValue("D1", "TipoProveedor");
-                    sl.SetCellValue("E1", "Pais");
-                    sl.SetCellValue("F1", "Estatus");
-                    sl.SetCellValue("G1", "Solicitante");
-                    for (int i = 1; i <= IdProveedor.Length; i++)
+                    // Create a new excel from txt files
+                    using (SLDocument sl = new SLDocument())
                     {
-                        sl.SetCellValue(i + 1, 1, IdProveedor[i - 1]);
-                        sl.SetCellValue(i + 1, 2, SunProveedor[i - 1]);
-                        sl.SetCellValue(i + 1, 3, Proveedor[i - 1]);
-                        sl.SetCellValue(i + 1, 4, TipoProveedor[i - 1]);
-                        sl.SetCellValue(i + 1, 5, Pais[i - 1]);
-                        sl.SetCellValue(i + 1, 6, Estatus[i - 1]);
-                        sl.SetCellValue(i + 1, 7, Solicitante[i - 1]);
+                        sl.SetCellValue("A1", "IdProveedor");
+                        sl.SetCellValue("B1", "SunProveedor");
+                        sl.SetCellValue("C1", "Proveedor");
+                        sl.SetCellValue("D1", "TipoProveedor");
+                        sl.SetCellValue("E1", "Pais");
+                        sl.SetCellValue("F1", "Estatus");
+                        sl.SetCellValue("G1", "Solicitante");
+                        for (int i = 1; i <= IdProveedor.Length; i++)
+                        {
+                            sl.SetCellValue(i + 1, 1, IdProveedor[i - 1]);
+                            sl.SetCellValue(i + 1, 2, SunProveedor[i - 1]);
+                            sl.SetCellValue(i + 1, 3, Proveedor[i - 1]);
+                            sl.SetCellValue(i + 1, 4, TipoProveedor[i - 1]);
+                            sl.SetCellValue(i + 1, 5, Pais[i - 1]);
+                            sl.SetCellValue(i + 1, 6, Estatus[i - 1]);
+                            sl.SetCellValue(i + 1, 7, Solicitante[i - 1]);
+                        }
+                        sl.SaveAs(excelPath);
                     }
-                    sl.SaveAs(excelPath);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    MessageBox.Show("Error when trying to read txt files, below the error message: \n\n" + ex.ToString(), "Error Message !",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 }
             }
 
             LstIdInstances = new List<string>();
-            
+
             this.Close();
         }
 
@@ -222,10 +232,6 @@ namespace BOT_2._0
 
         }
 
-        private void btnMessage_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("testing box", "testing titlle",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+      
     }
 }
