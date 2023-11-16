@@ -25,7 +25,7 @@ namespace BOT_2._0
 
         private void btnGuardarInstancia_Click(object sender, EventArgs e)
         {
-            
+
             // create folder with idInstancia as a name
             string dir = @"C:\bots\" + txtInstancia.Text;
             Global._globalInstance = txtInstancia.Text;
@@ -41,7 +41,7 @@ namespace BOT_2._0
 
             //save instances in an array
             LstIdInstances.Add(txtInstancia.Text);
-       
+
             txtInstancia.Clear();
 
         }
@@ -179,13 +179,14 @@ namespace BOT_2._0
                     Directory.CreateDirectory(folder);
 
                 // set all values from txt files
-                string[] IdProveedor = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblIdProducto.Text + ".txt");
-                string[] SunProveedor = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblSunProveedor.Text + ".txt");
-                string[] Proveedor = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblProveedor.Text + ".txt");
-                string[] TipoProveedor = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblTipoProveedor.Text + ".txt");
-                string[] Pais = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblPais.Text + ".txt");
-                string[] Estatus = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblStatus.Text + ".txt");
-                string[] Solicitante = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblSolicitante.Text + ".txt");
+
+                    string[] IdProveedor = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblIdProducto.Text + ".txt");
+                    string[] SunProveedor = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblSunProveedor.Text + ".txt");
+                    string[] Proveedor = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblProveedor.Text + ".txt");
+                    string[] TipoProveedor = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblTipoProveedor.Text + ".txt");
+                    string[] Pais = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblPais.Text + ".txt");
+                    string[] Estatus = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblStatus.Text + ".txt");
+                    string[] Solicitante = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblSolicitante.Text + ".txt");
 
                 // Create a new excel from txt files
                 using (SLDocument sl = new SLDocument())
@@ -212,12 +213,19 @@ namespace BOT_2._0
             }
 
             LstIdInstances = new List<string>();
+            
             this.Close();
         }
 
         private void txtNoIntancias_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnMessage_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("testing box", "testing titlle",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
