@@ -141,18 +141,36 @@ namespace BOT_2._0
 
         public void savedDataToTxtFile(string instancia, string labelName, string path, string txtBox)
         {
-
-            if (!File.Exists(path))
+            try
             {
-                //FileStream file = File.Create(path);
-                string appendText = txtBox + "\n";
-                File.AppendAllText(path, appendText);
+
+                if (!File.Exists(path))
+                {
+                    //FileStream file = File.Create(path);
+                    string appendText = txtBox + "\n";
+                    File.AppendAllText(path, appendText);
+
+                }
+                else if (File.Exists(path))
+                {
+                    string appendText = txtBox + "\n";
+                    File.AppendAllText(path, appendText);
+                }
 
             }
-            else if (File.Exists(path))
+            catch (DirectoryNotFoundException ex) {
+
+                Console.WriteLine(ex.ToString());
+                MessageBox.Show("The directory does not exist, DirectoryNotFoundException, below the error message: \n\n" + ex.ToString(), "Error Message !",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            catch (Exception ex)
             {
-                string appendText = txtBox + "\n";
-                File.AppendAllText(path, appendText);
+                Console.WriteLine(ex.ToString());
+                MessageBox.Show("Error when trying to create txt file, below the error message: \n\n" + ex.ToString(), "Error Message !",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
 
         }
