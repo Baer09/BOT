@@ -198,6 +198,10 @@ namespace BOT_2._0
                     Directory.CreateDirectory(folder);
 
                 // set all values from txt files
+                // generar sentencia que todos los string sean del mismo tamano, no genera excel
+                // si no cumple las condiciones, dejar en el log que no se completo por la condicion
+                // funcion de LOG: (llamar log - reporte), recibe mensaje, id mensaje, linea/unbicacion de mensaje
+                // 
                 try
                 {
 
