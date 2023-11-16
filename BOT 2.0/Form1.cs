@@ -158,7 +158,8 @@ namespace BOT_2._0
                 }
 
             }
-            catch (DirectoryNotFoundException ex) {
+            catch (DirectoryNotFoundException ex)
+            {
 
                 Console.WriteLine(ex.ToString());
                 MessageBox.Show("The directory does not exist, DirectoryNotFoundException, below the error message: \n\n" + ex.ToString(), "Error Message !",
@@ -246,7 +247,7 @@ namespace BOT_2._0
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
-                
+
 
 
             }
@@ -261,6 +262,6 @@ namespace BOT_2._0
 
         }
 
-      
+ 
     }
 }

@@ -58,7 +58,6 @@
             btnCerrar = new Button();
             lblNoInstancias = new Label();
             txtNoIntancias = new TextBox();
-            txtMostrar = new TextBox();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -348,20 +347,11 @@
             txtNoIntancias.TabIndex = 4;
             txtNoIntancias.TextChanged += txtNoIntancias_TextChanged;
             // 
-            // txtMostrar
-            // 
-            txtMostrar.Location = new Point(544, 238);
-            txtMostrar.Multiline = true;
-            txtMostrar.Name = "txtMostrar";
-            txtMostrar.Size = new Size(107, 140);
-            txtMostrar.TabIndex = 5;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(684, 463);
-            Controls.Add(txtMostrar);
             Controls.Add(txtNoIntancias);
             Controls.Add(lblNoInstancias);
             Controls.Add(btnCerrar);
@@ -406,6 +396,5 @@
         private Label lblSolicitante;
         private Label lblNoInstancias;
         private TextBox txtNoIntancias;
-        private TextBox txtMostrar;
     }
 }
