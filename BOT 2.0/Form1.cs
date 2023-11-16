@@ -213,13 +213,24 @@ namespace BOT_2._0
                         sl.SaveAs(excelPath);
                     }
                 }
-                catch (Exception ex)
+                catch (FileNotFoundException ex)
                 {
                     Console.WriteLine(ex.ToString());
-                    MessageBox.Show("Error when trying to read txt files, below the error message: \n\n" + ex.ToString(), "Error Message !",
+                    MessageBox.Show("Error when trying to read txt files, FILE NOT FOUND, below the error message: \n\n" + ex.ToString(), "Error Message !",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
+
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    MessageBox.Show("Error in GENERATE BUTTON, below the error message: \n\n" + ex.ToString(), "Error Message !",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+                
+
+
             }
 
             LstIdInstances = new List<string>();
