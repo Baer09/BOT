@@ -357,6 +357,7 @@
             Controls.Add(btnCerrar);
             Controls.Add(btnGenerar);
             Controls.Add(groupBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             Text = "Generador de reporte Excel";
             groupBox1.ResumeLayout(false);
