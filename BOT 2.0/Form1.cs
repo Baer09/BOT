@@ -213,6 +213,18 @@ namespace BOT_2._0
                     string[] Estatus = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblStatus.Text + ".txt");
                     string[] Solicitante = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblSolicitante.Text + ".txt");
 
+                    int lengthIdProveedor = IdProveedor.Length;
+                    int lengthSunProveedor = SunProveedor.Length;
+
+                    MessageBox.Show("Length idProveedores:" + lengthIdProveedor + "\n\n" +
+                        "Length sunProveedor: " + lengthSunProveedor , "length of arrays !",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    if (IdProveedor.Contains("")) {
+                        MessageBox.Show("It contains empty cells", "length of arrays !",
+                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
                     // Create a new excel from txt files
                     using (SLDocument sl = new SLDocument())
                     {
@@ -225,6 +237,10 @@ namespace BOT_2._0
                         sl.SetCellValue("G1", "Solicitante");
                         for (int i = 1; i <= IdProveedor.Length; i++)
                         {
+                            // check if an array has en emtpy element or if one of them has a different length
+
+                            
+
                             sl.SetCellValue(i + 1, 1, IdProveedor[i - 1]);
                             sl.SetCellValue(i + 1, 2, SunProveedor[i - 1]);
                             sl.SetCellValue(i + 1, 3, Proveedor[i - 1]);
