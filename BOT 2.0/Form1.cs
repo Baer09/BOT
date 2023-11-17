@@ -282,6 +282,27 @@ namespace BOT_2._0
 
         }
 
+        private Boolean checkArrayslength(List<string[]> list) {
+            Boolean sameLength = true;
+            int Aux = 0;
+            int arrayLength = 0;
+
+            for (int i = 0; i < list.Count();i++) {
+                for(int j = 0; j < list.Count; i++) { 
+                    //Aux = list[i].Length;
+                    if (list[i].Length != list[i + 1].Length) { 
+                    
+                    }
+
+                }
+
+
+            }
+            
+
+            return false;
+        }
+
 
     }
 }
