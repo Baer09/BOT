@@ -214,7 +214,6 @@ namespace BOT_2._0
                     string[] Estatus = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblStatus.Text + ".txt");
                     string[] Solicitante = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblSolicitante.Text + ".txt");
 
-
                     // adding array into a list
                     List<string[]> listOfArrays = new List<string[]>();
                     listOfArrays.Add(IdProveedor);
@@ -224,8 +223,6 @@ namespace BOT_2._0
                     listOfArrays.Add(Pais);
                     listOfArrays.Add(Estatus);
                     listOfArrays.Add(Solicitante);
-
-
 
                     if ((checkLength(listOfArrays) && !checkBlanks(listOfArrays)))
                     {
@@ -278,9 +275,6 @@ namespace BOT_2._0
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
-
-
-
             }
 
             LstIdInstances = new List<string>();
@@ -308,49 +302,38 @@ namespace BOT_2._0
 
         private Boolean checkBlanks(List<string[]> listOfArrays) {
             Boolean blanks = false;
-
-            //check if contains blanks whith .IsNullOrWhiteSpace()
-
             for (int i = 0; i < listOfArrays.Count;i++) {
                 for (int j = 0; j < listOfArrays[i].Length; j++) {
                     if (string.IsNullOrWhiteSpace(listOfArrays[i][j])) {
                         blanks = true;
                         break;                        
                     }
-                
-                }
-                
+                }               
             }
             return blanks;
         }
 
+        private void log() {
+            //create txt 
+            string path = @"C:\bots\log";
+            try {
+                if (!File.Exists(path))
+                {
+                    //FileStream file = File.Create(path);
+                    string appendText ="\n";
+                    File.AppendAllText(path, appendText);
 
-
-        /*
-        private Boolean checkArrayslength(List<string[]> list) {
-
-
-            
-            Boolean sameLength = true;
-            int Aux = 0;
-            int arrayLength = 0;
-
-            for (int i = 0; i < list.Count();i++) {
-                for(int j = 0; j < list.Count; i++) { 
-                    //Aux = list[i].Length;
-                    if (list[i].Length != list[i + 1].Length) { 
-                    
-                    }
-
+                }
+                else if (File.Exists(path))
+                {
+                    string appendText ="\n";
+                    File.AppendAllText(path, appendText);
                 }
 
 
-            }
+            } catch (DirectoryNotFoundException ex) { 
             
-
-            return false;
-        }  */
-
-
+            }
+        }
     }
 }
