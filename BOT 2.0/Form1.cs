@@ -214,7 +214,7 @@ namespace BOT_2._0
                     string[] Estatus = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblStatus.Text + ".txt");
                     string[] Solicitante = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblSolicitante.Text + ".txt");
 
-                    
+
                     // adding array into a list
                     List<string[]> listOfArrays = new List<string[]>();
                     listOfArrays.Add(IdProveedor);
@@ -226,52 +226,41 @@ namespace BOT_2._0
                     listOfArrays.Add(Solicitante);
 
 
-                    
-                    if (checkLength(listOfArrays))
-                    {
-                        MessageBox.Show("el tamano de los arreglos son iguales", "length of arrays !",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                         // Create a new excel from txt files
-                    using (SLDocument sl = new SLDocument())
+                    if ((checkLength(listOfArrays) && !checkBlanks(listOfArrays)))
                     {
-                        sl.SetCellValue("A1", "IdProveedor");
-                        sl.SetCellValue("B1", "SunProveedor");
-                        sl.SetCellValue("C1", "Proveedor");
-                        sl.SetCellValue("D1", "TipoProveedor");
-                        sl.SetCellValue("E1", "Pais");
-                        sl.SetCellValue("F1", "Estatus");
-                        sl.SetCellValue("G1", "Solicitante");
-                        for (int i = 1; i <= IdProveedor.Length; i++)
+                        //MessageBox.Show("el tamano de los arreglos son iguales", "length of arrays !",
+                        //sMessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        // Create a new excel from txt files
+                        using (SLDocument sl = new SLDocument())
                         {
-                            // check if an array has en emtpy element or if one of them has a different length
+                            sl.SetCellValue("A1", "IdProveedor");
+                            sl.SetCellValue("B1", "SunProveedor");
+                            sl.SetCellValue("C1", "Proveedor");
+                            sl.SetCellValue("D1", "TipoProveedor");
+                            sl.SetCellValue("E1", "Pais");
+                            sl.SetCellValue("F1", "Estatus");
+                            sl.SetCellValue("G1", "Solicitante");
+                            for (int i = 1; i <= IdProveedor.Length; i++)
+                            {
+                                // check if an array has en emtpy element or if one of them has a different length
 
-                            sl.SetCellValue(i + 1, 1, IdProveedor[i - 1]);
-                            sl.SetCellValue(i + 1, 2, SunProveedor[i - 1]);
-                            sl.SetCellValue(i + 1, 3, Proveedor[i - 1]);
-                            sl.SetCellValue(i + 1, 4, TipoProveedor[i - 1]);
-                            sl.SetCellValue(i + 1, 5, Pais[i - 1]);
-                            sl.SetCellValue(i + 1, 6, Estatus[i - 1]);
-                            sl.SetCellValue(i + 1, 7, Solicitante[i - 1]);
+                                sl.SetCellValue(i + 1, 1, IdProveedor[i - 1]);
+                                sl.SetCellValue(i + 1, 2, SunProveedor[i - 1]);
+                                sl.SetCellValue(i + 1, 3, Proveedor[i - 1]);
+                                sl.SetCellValue(i + 1, 4, TipoProveedor[i - 1]);
+                                sl.SetCellValue(i + 1, 5, Pais[i - 1]);
+                                sl.SetCellValue(i + 1, 6, Estatus[i - 1]);
+                                sl.SetCellValue(i + 1, 7, Solicitante[i - 1]);
+                            }
+                            sl.SaveAs(excelPath);
                         }
-                        sl.SaveAs(excelPath);
                     }
-                    }
-                    else if (!checkLength(listOfArrays)){
-                        MessageBox.Show("el tamano de los arreglos no son iguales", "length of arrays !",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    
-
-
-
-
-                    //check if contains blanks
-                    if (IdProveedor.Contains("")) {
-                        MessageBox.Show("It contains empty cells", "length of arrays !",
-                         MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
+                    else if (!checkLength(listOfArrays) || checkBlanks(listOfArrays) ){
+                            MessageBox.Show("el tamano de los arreglos no son iguales o txt tiene espacios vacios", "length of arrays !",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                    
                 }
                 catch (FileNotFoundException ex)
@@ -315,6 +304,24 @@ namespace BOT_2._0
                 }
             }           
             return sameSize;
+        }
+
+        private Boolean checkBlanks(List<string[]> listOfArrays) {
+            Boolean blanks = false;
+
+            //check if contains blanks whith .IsNullOrWhiteSpace()
+
+            for (int i = 0; i < listOfArrays.Count;i++) {
+                for (int j = 0; j < listOfArrays[i].Length; j++) {
+                    if (string.IsNullOrWhiteSpace(listOfArrays[i][j])) {
+                        blanks = true;
+                        break;                        
+                    }
+                
+                }
+                
+            }
+            return blanks;
         }
 
 
