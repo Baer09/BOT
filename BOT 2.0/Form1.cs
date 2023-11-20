@@ -1,5 +1,6 @@
 using SpreadsheetLight;
 using System.Collections;
+using System.Web;
 
 namespace BOT_2._0
 {
@@ -213,19 +214,25 @@ namespace BOT_2._0
                     string[] Estatus = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblStatus.Text + ".txt");
                     string[] Solicitante = File.ReadAllLines(pathTxt + @"\" + IdInstance + @"\" + IdInstance + lblSolicitante.Text + ".txt");
 
-                    int lengthIdProveedor = IdProveedor.Length;
-                    int lengthSunProveedor = SunProveedor.Length;
+                    
+                    // adding array into a list
+                    List<string[]> listOfArrays = new List<string[]>();
+                    listOfArrays.Add(IdProveedor);
+                    listOfArrays.Add(SunProveedor);
+                    listOfArrays.Add(Proveedor);
+                    listOfArrays.Add(TipoProveedor);
+                    listOfArrays.Add(Pais);
+                    listOfArrays.Add(Estatus);
+                    listOfArrays.Add(Solicitante);
 
-                    MessageBox.Show("Length idProveedores:" + lengthIdProveedor + "\n\n" +
-                        "Length sunProveedor: " + lengthSunProveedor , "length of arrays !",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    if (IdProveedor.Contains("")) {
-                        MessageBox.Show("It contains empty cells", "length of arrays !",
-                         MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    
+                    if (checkLength(listOfArrays))
+                    {
+                        MessageBox.Show("el tamano de los arreglos son iguales", "length of arrays !",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    // Create a new excel from txt files
+                         // Create a new excel from txt files
                     using (SLDocument sl = new SLDocument())
                     {
                         sl.SetCellValue("A1", "IdProveedor");
@@ -239,8 +246,6 @@ namespace BOT_2._0
                         {
                             // check if an array has en emtpy element or if one of them has a different length
 
-                            
-
                             sl.SetCellValue(i + 1, 1, IdProveedor[i - 1]);
                             sl.SetCellValue(i + 1, 2, SunProveedor[i - 1]);
                             sl.SetCellValue(i + 1, 3, Proveedor[i - 1]);
@@ -251,6 +256,23 @@ namespace BOT_2._0
                         }
                         sl.SaveAs(excelPath);
                     }
+                    }
+                    else if (!checkLength(listOfArrays)){
+                        MessageBox.Show("el tamano de los arreglos no son iguales", "length of arrays !",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    
+
+
+
+
+                    //check if contains blanks
+                    if (IdProveedor.Contains("")) {
+                        MessageBox.Show("It contains empty cells", "length of arrays !",
+                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                   
                 }
                 catch (FileNotFoundException ex)
                 {
@@ -282,7 +304,26 @@ namespace BOT_2._0
 
         }
 
+        private Boolean checkLength(List <string[]> listOfArrays) {
+            Boolean sameSize = true;
+            int sizeOfArray = listOfArrays[0].Length;
+            for (int i = 1; i < listOfArrays.Count();i++) {
+                if (sizeOfArray != listOfArrays[i].Length) {
+
+                    sameSize = false;
+                    break;                   
+                }
+            }           
+            return sameSize;
+        }
+
+
+
+        /*
         private Boolean checkArrayslength(List<string[]> list) {
+
+
+            
             Boolean sameLength = true;
             int Aux = 0;
             int arrayLength = 0;
@@ -301,7 +342,7 @@ namespace BOT_2._0
             
 
             return false;
-        }
+        }  */
 
 
     }
