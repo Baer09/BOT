@@ -6,6 +6,7 @@ namespace BOT_2._0
 {
     public partial class Form1 : Form
     {
+        private string fileLog;
         private List<string> LstIdInstances;
         static class Global
         {
@@ -15,6 +16,7 @@ namespace BOT_2._0
         public Form1()
         {
             InitializeComponent();
+            fileLog = @"c:\bots\log\" + DateTime.Now.ToString("ddMMyyyyhhmm") + ".txt";
             LstIdInstances = new List<string>();
             string instanciaActual;
         }
@@ -61,7 +63,7 @@ namespace BOT_2._0
             string path = @"C:\bots\" + Global._globalInstance + @"\" + Global._globalInstance + idProducto + ".txt";
             //create txt file & save data
             //txtInstancia.Text
-            savedDataToTxtFile(Global._globalInstance, lblIdProducto.Text, path, txtIdProveedor.Text);
+            savedDataToTxtFile(txtInstancia.Text, lblIdProducto.Text, path, txtIdProveedor.Text, "Boton Solicitante Info");
             txtIdProveedor.Clear();
             /*
             if (!File.Exists(path))
@@ -76,6 +78,7 @@ namespace BOT_2._0
                 File.AppendAllText(path, appendText);
             }
             */
+            
         }
 
         private void btnSunProveedor_Click(object sender, EventArgs e)
@@ -84,7 +87,7 @@ namespace BOT_2._0
             string sunProducto = lblSunProveedor.Text;
             string path = @"C:\bots\" + Global._globalInstance + @"\" + Global._globalInstance + sunProducto + ".txt";
 
-            savedDataToTxtFile(txtInstancia.Text, lblSunProveedor.Text, path, txtSunProveedor.Text);
+            savedDataToTxtFile(txtInstancia.Text, lblSunProveedor.Text, path, txtSunProveedor.Text, "Boton Solicitante Info");
             txtSunProveedor.Clear();
 
         }
@@ -95,7 +98,7 @@ namespace BOT_2._0
             string proveedor = lblProveedor.Text;
             string path = @"C:\bots\" + Global._globalInstance + @"\" + Global._globalInstance + proveedor + ".txt";
 
-            savedDataToTxtFile(txtInstancia.Text, lblProveedor.Text, path, txtProveedor.Text);
+            savedDataToTxtFile(txtInstancia.Text, lblProveedor.Text, path, txtProveedor.Text, "Boton Solicitante Info");
             txtProveedor.Clear();
         }
 
@@ -105,7 +108,7 @@ namespace BOT_2._0
             string tipoProveedor = lblTipoProveedor.Text;
             string path = @"C:\bots\" + Global._globalInstance + @"\" + Global._globalInstance + tipoProveedor + ".txt";
 
-            savedDataToTxtFile(txtInstancia.Text, lblTipoProveedor.Text, path, txtTipoProveedor.Text);
+            savedDataToTxtFile(txtInstancia.Text, lblTipoProveedor.Text, path, txtTipoProveedor.Text, "Boton Solicitante Info");
             txtTipoProveedor.Clear();
         }
 
@@ -115,7 +118,7 @@ namespace BOT_2._0
             string pais = lblPais.Text;
             string path = @"C:\bots\" + Global._globalInstance + @"\" + Global._globalInstance + pais + ".txt";
 
-            savedDataToTxtFile(txtInstancia.Text, lblPais.Text, path, txtPais.Text);
+            savedDataToTxtFile(txtInstancia.Text, lblPais.Text, path, txtPais.Text, "Boton Solicitante Info");
             txtPais.Clear();
 
         }
@@ -126,7 +129,7 @@ namespace BOT_2._0
             string estatus = lblStatus.Text;
             string path = @"C:\bots\" + Global._globalInstance + @"\" + Global._globalInstance + estatus + ".txt";
 
-            savedDataToTxtFile(txtInstancia.Text, lblStatus.Text, path, txtEstatus.Text);
+            savedDataToTxtFile(txtInstancia.Text, lblStatus.Text, path, txtEstatus.Text, "Boton Solicitante Info");
             txtEstatus.Clear();
         }
 
@@ -136,45 +139,15 @@ namespace BOT_2._0
             string solicitante = lblSolicitante.Text;
             string path = @"C:\bots\" + Global._globalInstance + @"\" + Global._globalInstance + solicitante + ".txt";
 
-            savedDataToTxtFile(txtInstancia.Text, lblSolicitante.Text, path, txtSolicitante.Text);
+            savedDataToTxtFile(txtInstancia.Text, lblSolicitante.Text, path, txtSolicitante.Text,"Boton Solicitante Info");
             txtSolicitante.Clear();
         }
 
-        public void savedDataToTxtFile(string instancia, string labelName, string path, string txtBox)
+        public void savedDataToTxtFile(string instancia, string labelName, string path, string txtBox,string message)
         {
-            try
-            {
-
-                if (!File.Exists(path))
-                {
-                    //FileStream file = File.Create(path);
-                    string appendText = txtBox + "\n";
-                    File.AppendAllText(path, appendText);
-
-                }
-                else if (File.Exists(path))
-                {
-                    string appendText = txtBox + "\n";
-                    File.AppendAllText(path, appendText);
-                }
-
-            }
-            catch (DirectoryNotFoundException ex)
-            {
-
-                Console.WriteLine(ex.ToString());
-                MessageBox.Show("The directory does not exist, DirectoryNotFoundException, below the error message: \n\n" + ex.ToString(), "Error Message !",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-                MessageBox.Show("Error when trying to create txt file, below the error message: \n\n" + ex.ToString(), "Error Message !",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-
+            path = path + instancia;
+            log(path,txtBox);
+            //log(fileLog,message + " " + txtBox);
         }
 
         private void btnGenerar_Click(object sender, EventArgs e)
@@ -313,27 +286,30 @@ namespace BOT_2._0
             return blanks;
         }
 
-        private void log() {
-            //create txt 
-            string path = @"C:\bots\log";
-            try {
+        private void log(string path,string txtMessage) {
+            try
+            {
                 if (!File.Exists(path))
-                {
-                    //FileStream file = File.Create(path);
-                    string appendText ="\n";
-                    File.AppendAllText(path, appendText);
-
-                }
-                else if (File.Exists(path))
-                {
-                    string appendText ="\n";
-                    File.AppendAllText(path, appendText);
-                }
-
-
-            } catch (DirectoryNotFoundException ex) { 
-            
+                    File.WriteAllText(path, txtMessage + "\n");
+                else
+                    File.AppendAllText(path, txtMessage + "\n");
             }
+            catch (DirectoryNotFoundException ex)
+            {
+
+                Console.WriteLine(ex.ToString());
+                MessageBox.Show("The directory does not exist, DirectoryNotFoundException, below the error message: \n\n" + ex.ToString(), "Error Message !",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                MessageBox.Show("Error when trying to create txt file, below the error message: \n\n" + ex.ToString(), "Error Message !",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
         }
     }
 }
