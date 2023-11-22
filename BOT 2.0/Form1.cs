@@ -1,3 +1,5 @@
+using DocumentFormat.OpenXml.Drawing.Diagrams;
+using DocumentFormat.OpenXml.Office2013.Excel;
 using SpreadsheetLight;
 using System.Collections;
 using System.Web;
@@ -264,14 +266,12 @@ namespace BOT_2._0
             int sizeOfArray = listOfArrays[0].Length;
             for (int i = 1; i < listOfArrays.Count();i++) {
                 if (sizeOfArray != listOfArrays[i].Length) {
-
                     sameSize = false;
                     break;                   
                 }
             }           
-            return sameSize;
+            return sameSize; 
         }
-
         private Boolean checkBlanks(List<string[]> listOfArrays) {
             Boolean blanks = false;
             for (int i = 0; i < listOfArrays.Count;i++) {
@@ -285,7 +285,7 @@ namespace BOT_2._0
             return blanks;
         }
 
-        private void log(string path,string txtMessage) {
+        private void log(string path,string txtMessage) { 
             try
             {
                 if (!File.Exists(path))
@@ -295,17 +295,19 @@ namespace BOT_2._0
             }
             catch (DirectoryNotFoundException ex)
             {
+                log(fileLog,ex.ToString());
 
-                Console.WriteLine(ex.ToString());
-                MessageBox.Show("The directory does not exist, DirectoryNotFoundException, below the error message: \n\n" + ex.ToString(), "Error Message !",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //Console.WriteLine(ex.ToString());
+                //MessageBox.Show("The directory does not exist, DirectoryNotFoundException, below the error message: \n\n" + ex.ToString(), "Error Message !",
+                //MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
-                MessageBox.Show("Error when trying to create txt file, below the error message: \n\n" + ex.ToString(), "Error Message !",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                log(fileLog,ex.ToString());
+                //Console.WriteLine(ex.ToString());
+                //MessageBox.Show("Error when trying to create txt file, below the error message: \n\n" + ex.ToString(), "Error Message !",
+                //MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
 
