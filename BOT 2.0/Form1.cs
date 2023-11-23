@@ -8,6 +8,8 @@ namespace BOT_2._0
 {
     public partial class Form1 : Form
     {
+        
+        private string time = DateTime.Now.ToString("hh:mm tt");
         private string fileLog;
         private string logDir;
         private List<string> LstIdInstances;
@@ -27,13 +29,13 @@ namespace BOT_2._0
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            log(fileLog,e.ToString() + " " + btnCerrar.Text);
+            log(fileLog,time + " l 30 btnCerrar");
             this.Close();
         }
 
         private void btnGuardarInstancia_Click(object sender, EventArgs e)
         {
-
+            
             // create folder with idInstancia as a name
             string dir = @"C:\bots\" + txtInstancia.Text;
             Global._globalInstance = txtInstancia.Text;
@@ -48,7 +50,7 @@ namespace BOT_2._0
                 Directory.CreateDirectory(logDir);
             }
 
-
+            log(fileLog,time + " L 36 btnGuardarInstancia: " + txtInstancia.Text);
             // show number of instances
             txtNoIntancias.Text += System.Environment.NewLine + txtInstancia.Text;
             // txtNoIntancias.Text += System.Environment.NewLine + Global._globalInstance;
@@ -74,7 +76,7 @@ namespace BOT_2._0
             string path = @"C:\bots\" + Global._globalInstance + @"\" + Global._globalInstance + idProducto + ".txt";
             //create txt file & save data
             //txtInstancia.Text
-            savedDataToTxtFile(txtInstancia.Text, lblIdProducto.Text, path, txtIdProveedor.Text, e.ToString());
+            savedDataToTxtFile(txtInstancia.Text, lblIdProducto.Text, path, txtIdProveedor.Text, "L 77 btnIdProveedor");
             txtIdProveedor.Clear();            
         }
 
@@ -84,7 +86,7 @@ namespace BOT_2._0
             string sunProducto = lblSunProveedor.Text;
             string path = @"C:\bots\" + Global._globalInstance + @"\" + Global._globalInstance + sunProducto + ".txt";
 
-            savedDataToTxtFile(txtInstancia.Text, lblSunProveedor.Text, path, txtSunProveedor.Text, e.ToString());
+            savedDataToTxtFile(txtInstancia.Text, lblSunProveedor.Text, path, txtSunProveedor.Text,"L 87 btnSunProveedor" );
             txtSunProveedor.Clear();
 
         }
@@ -95,7 +97,7 @@ namespace BOT_2._0
             string proveedor = lblProveedor.Text;
             string path = @"C:\bots\" + Global._globalInstance + @"\" + Global._globalInstance + proveedor + ".txt";
 
-            savedDataToTxtFile(txtInstancia.Text, lblProveedor.Text, path, txtProveedor.Text, e.ToString());
+            savedDataToTxtFile(txtInstancia.Text, lblProveedor.Text, path, txtProveedor.Text, "L 98 btnProveedor");
             txtProveedor.Clear();
         }
 
@@ -105,7 +107,7 @@ namespace BOT_2._0
             string tipoProveedor = lblTipoProveedor.Text;
             string path = @"C:\bots\" + Global._globalInstance + @"\" + Global._globalInstance + tipoProveedor + ".txt";
 
-            savedDataToTxtFile(txtInstancia.Text, lblTipoProveedor.Text, path, txtTipoProveedor.Text,e.ToString());
+            savedDataToTxtFile(txtInstancia.Text, lblTipoProveedor.Text, path, txtTipoProveedor.Text,"L 108 btnTipoProveedor");
             txtTipoProveedor.Clear();
         }
 
@@ -115,7 +117,7 @@ namespace BOT_2._0
             string pais = lblPais.Text;
             string path = @"C:\bots\" + Global._globalInstance + @"\" + Global._globalInstance + pais + ".txt";
 
-            savedDataToTxtFile(txtInstancia.Text, lblPais.Text, path, txtPais.Text, e.ToString());
+            savedDataToTxtFile(txtInstancia.Text, lblPais.Text, path, txtPais.Text," L 118 btnPais ");
             txtPais.Clear();
 
         }
@@ -126,7 +128,7 @@ namespace BOT_2._0
             string estatus = lblStatus.Text;
             string path = @"C:\bots\" + Global._globalInstance + @"\" + Global._globalInstance + estatus + ".txt";
 
-            savedDataToTxtFile(txtInstancia.Text, lblStatus.Text, path, txtEstatus.Text, e.ToString());
+            savedDataToTxtFile(txtInstancia.Text, lblStatus.Text, path, txtEstatus.Text, "L 129 btnEstatus ");
             txtEstatus.Clear();
         }
 
@@ -138,7 +140,7 @@ namespace BOT_2._0
 
             
 
-            savedDataToTxtFile(txtInstancia.Text, lblSolicitante.Text, path, txtSolicitante.Text, e.ToString());
+            savedDataToTxtFile(txtInstancia.Text, lblSolicitante.Text, path, txtSolicitante.Text,"L 141 btnSolicitante" );
             txtSolicitante.Clear();
         }
 
@@ -146,12 +148,12 @@ namespace BOT_2._0
         {
             path = path + instancia;
             log(path,txtBox);
-            log(fileLog,message + " " + labelName+ " " + txtBox);
+            log(fileLog,time + " " + message + " " + labelName+ " : " + txtBox);
         }
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
-            log(fileLog,e.ToString() + " " + btnGenerar.Text);
+            log(fileLog,time + " L 155 btnGenerar");
             //path
             string path = @"C:\bots\import\";
             string pathTxt = @"C:\bots\";
@@ -231,12 +233,12 @@ namespace BOT_2._0
                             //MessageBox.Show("el tamano de los arreglos no son iguales o txt tiene espacios vacios", "length of arrays !",
                             //MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                            log(fileLog,"El Tamaño de los arreglos no son iguales");  
+                            log(fileLog,"L 235 btnGenerar, El Tamaño de los arreglos no son iguales");  
 
                     }
                     else if (checkBlanks(listOfArrays))
                     {
-                        log(fileLog, "txt tiene espacios vacios");
+                        log(fileLog, "L 240 btn Generar,txt tiene espacios vacios");
                     }
 
                 }
@@ -289,25 +291,19 @@ namespace BOT_2._0
             try
             {
                 if (!File.Exists(path))
-                    File.WriteAllText(path, txtMessage + "\n");
+                    File.WriteAllText(path,txtMessage + "\n");
                 else
-                    File.AppendAllText(path, txtMessage + "\n");
+                    File.AppendAllText(path,txtMessage + "\n");
             }
             catch (DirectoryNotFoundException ex)
             {
                 log(fileLog,ex.ToString());
 
-                //Console.WriteLine(ex.ToString());
-                //MessageBox.Show("The directory does not exist, DirectoryNotFoundException, below the error message: \n\n" + ex.ToString(), "Error Message !",
-                //MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
             catch (Exception ex)
             {
                 log(fileLog,ex.ToString());
-                //Console.WriteLine(ex.ToString());
-                //MessageBox.Show("Error when trying to create txt file, below the error message: \n\n" + ex.ToString(), "Error Message !",
-                //MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
 
