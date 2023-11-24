@@ -25,6 +25,11 @@ namespace BOT_2._0
             logDir = @"c:\bots\log\";
             LstIdInstances = new List<string>();
             string instanciaActual;
+            if (!Directory.Exists(logDir))
+            {
+                Directory.CreateDirectory(logDir);
+            }
+
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -45,11 +50,7 @@ namespace BOT_2._0
                 Directory.CreateDirectory(dir);
             }
 
-            if (!Directory.Exists(logDir))
-            {
-                Directory.CreateDirectory(logDir);
-            }
-
+           
             log(fileLog,time + " L 36 btnGuardarInstancia: " + txtInstancia.Text);
             // show number of instances
             txtNoIntancias.Text += System.Environment.NewLine + txtInstancia.Text;
@@ -173,11 +174,7 @@ namespace BOT_2._0
                 else
                     Directory.CreateDirectory(folder);
 
-                // set all values from txt files
-                // generar sentencia que todos los string sean del mismo tamano, no genera excel
-                // si no cumple las condiciones, dejar en el log que no se completo por la condicion
-                // funcion de LOG: (llamar log - reporte), recibe mensaje, id mensaje, linea/unbicacion de mensaje
-                // 
+
                 try
                 {
 
@@ -241,6 +238,11 @@ namespace BOT_2._0
                         log(fileLog, "L 240 btn Generar,txt tiene espacios vacios");
                     }
 
+                    if (Directory.Exists(pathTxt + @"\" + IdInstance))
+                    {
+                        Directory.Delete(pathTxt + @"\" + IdInstance,true);
+                    }
+
                 }
                 catch (FileNotFoundException ex)
                 {
@@ -251,6 +253,9 @@ namespace BOT_2._0
                 {
                     log(fileLog, ex.ToString());
                 }
+
+                
+                
             }
 
             LstIdInstances = new List<string>();
