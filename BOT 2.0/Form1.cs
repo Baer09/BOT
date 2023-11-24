@@ -237,9 +237,9 @@ namespace BOT_2._0
                     {
                         log(fileLog, "L 240 btn Generar,txt tiene espacios vacios");
                     }
-
+                    
                     if (Directory.Exists(pathTxt + @"\" + IdInstance))
-                    {
+                   {
                         Directory.Delete(pathTxt + @"\" + IdInstance,true);
                     }
 
